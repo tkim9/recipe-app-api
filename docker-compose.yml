@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  # this is the name of the service, "app"
+  app:
+    build:
+      context: .   # "." build on current directory
+    ports:
+      - "8000:8000"
+
+    # maps apps in our directory to app in docker dir
+    # this allows auto update without pushing it everytime after cahnges
+    volumes:
+      - ./app:/app
+
+    # run sh using command
+    # 0.0.0.0 will allow all IP addresses that run on docker container
+    # :8000 maps to our local ports on our machine
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"    
