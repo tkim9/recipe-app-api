@@ -1,0 +1,25 @@
+
+
+$ docker build .
+
+
+$ docker-compose build
+
+# this will create django project file for us
+$ docker-compose run app sh -c "django-admin.py startproject app ."
+
+# to run our test
+$ docker-compose run app sh -c "python manage.py test"
+
+# this will create new core app in our project
+$ docker-compose run app sh -c "python manage.
+py startapp core"
+
+# you can't have both tests.py file and tests folder in one directory
+# otherwise you will get an error
+
+# migration apps: makemigrations <name of the app>
+# this is to setup data base
+# whenever you make changes to the model, you need to run the migrations again
+$ docker-compose run app sh -c "python manage.py makemigrations core"
+
